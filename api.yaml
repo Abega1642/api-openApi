@@ -7,6 +7,9 @@ servers:
 paths:
   /customers:
     get:
+      summary: get all customers
+      tags:
+        - Customers
       responses:
         '200':
           description: OK
