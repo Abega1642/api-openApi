@@ -1,6 +1,6 @@
 openapi: "3.0.3"
 info:
-  title: STD23028 - TD
+  title: STD23028 - TD1
   version: "1.0.0"
 servers:
   - url: https://localhost:8080/STD23028/abega
