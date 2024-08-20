@@ -1,0 +1,33 @@
+openapi: "3.0.3"
+info:
+  title: STD23028 - TD
+  version: "1.0.0"
+servers:
+  - url: https://localhost:8080/STD23028/abega
+paths:
+  /customers:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customers'
+
+components:
+  schemas:
+    Customers:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Razafindratelo Abegà
+        age:
+          type: integer
+          format: int32
+          example: 19
+
+
