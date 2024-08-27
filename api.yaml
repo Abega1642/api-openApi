@@ -7,20 +7,23 @@ servers:
 paths:
   /customers:
     get:
+      tags:
+        - Customers
+      summary: get all customers
+      operationId: getAllCustomers
       parameters:
         - in: query
           name: page
           required: true
           schema:
             type: integer
+            example: 5
         - in: query
           name: pageSize
           required: true
           schema:
             type: integer
-      summary: get all customers
-      tags:
-        - Customers
+            example: 6
       responses:
         '200':
           description: OK
@@ -31,6 +34,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/Customers'
     post:
+      tags:
+        - Customers
+      summary: add customers
+      operationId: addCustomers
       requestBody:
         required: true
         content:
@@ -50,6 +57,9 @@ paths:
                 items:
                   $ref: "#/components/schemas/Customers"
     put:
+      tags:
+        - Customers
+      summary: update customers
       requestBody:
         required: true
         content:
@@ -58,6 +68,27 @@ paths:
               type: array
               items:
                 $ref: "#/components/schemas/CustomersWithId"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CustomersWithId"
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "id1"
       responses:
         '200':
           description: OK
