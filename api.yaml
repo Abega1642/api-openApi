@@ -7,6 +7,17 @@ servers:
 paths:
   /customers:
     get:
+      parameters:
+        - in: query
+          name: page
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          required: true
+          schema:
+            type: integer
       summary: get all customers
       tags:
         - Customers
@@ -19,6 +30,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customers'
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Customers"
+      
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customers"
+    put:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/CustomersWithId"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CustomersWithId"
+
 
 components:
   schemas:
@@ -32,5 +81,16 @@ components:
           type: integer
           format: int32
           example: 19
+    CustomersWithId:
+      allOf:
+        - $ref: "#/components/schemas/Customers"
+        - type: object
+          properties:
+            id:
+              type: string
+              example: "id1"
+          required:
+            - id
+
 
 
