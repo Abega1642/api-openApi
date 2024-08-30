@@ -1,0 +1,62 @@
+openapi: "3.0.3"
+info:
+  title: API TD4 - STD23028
+  version: "1.0.0"
+servers:
+  - url: https://localhost:8080/std23028
+paths:
+  /customers/{customerId}/orders:
+    get:
+      tags:
+        - Order
+      summary: Get customer's orders
+      operationId: getOrderByCustomerId
+      parameters:
+        - in: path
+          required: true
+          name: customerId
+          schema:
+            type: string
+            example: "cUsT-df12-fde8"
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                   $ref: "#/components/schemas/Meals"
+
+
+
+
+components:
+  schemas:
+    Meal:
+      allOf:
+        - $ref: "../td3/td3.yaml/#/components/schemas/Meal"
+    Meals:
+      type: array
+      properties:
+      allOf:
+        - $ref: "#/components/schemas/Meal"
+      $ref:
+    Orders:
+      type: object
+      properties:
+        reference:
+          type: string
+          example: "order_ref-125d-dd8f"
+        meals:
+          $ref: "#/components/schemas/Meals"
+        orderDateTime:
+          type: string
+    CustomerId:
+      type: object
+
+    OrdersWithCustomerId:
+      allOf:
+        - $ref: "#/components/schemas/CustomerId"
+        - $ref: "#/components/schemas/Orders"

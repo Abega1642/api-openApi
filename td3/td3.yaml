@@ -1,0 +1,121 @@
+openapi: "3.0.3"
+info:
+  title: API TD3 - STD23028
+  version: "1.0.0"
+servers:
+  - url: https://localhost:8080/std23028
+paths:
+  /meal:
+    get:
+      tags:
+        - meal
+      summary: get all meals
+      operationId: getAllMeals
+      responses:
+        '200':
+          description: meal lists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Meal"
+    post:
+      tags:
+        - meal
+      summary: add meals
+      operationId: addMeal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Meal"
+      responses:
+        '201':
+          description: meal(s) added
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MealWithId"
+    put:
+      tags:
+        - meal
+      summary: update an existing meal
+      operationId: updateMeal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/MealWithId"
+      responses:
+        '200':
+          description: updated meals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MealWithId"
+    delete:
+      tags:
+        - meal
+      summary: delete meals
+      operationId: deleteMeal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/MealId"
+      responses:
+        '200':
+          description: deleted meal
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MealWithId"
+
+
+
+
+
+
+
+components:
+  schemas:
+    Meal:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Salade de Pâte"
+          description: meal name
+        price:
+          type: number
+          example: 100.804
+          description: meal price
+    MealId :
+      type : object
+      properties:
+        id:
+          type: string
+          example: "mEaL_i8d0_48df_000"
+          required:
+            - id
+    MealWithId:
+      allOf:
+        - $ref: "#/components/schemas/MealId"
+        - $ref: "#/components/schemas/Meal"
+
