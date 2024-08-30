@@ -1,6 +1,6 @@
 openapi: "3.0.3"
 info:
-  title: STD23028 - TD1
+  title: STD23028 - TD1-2
   version: "1.0.2"
 servers:
   - url: https://localhost:8080/STD23028/abega
@@ -112,14 +112,16 @@ components:
           type: integer
           format: int32
           example: 19
+    CustomerId:
+      type: object
+      properties:
+        CustomerId:
+          type: string
+          example: "id1"
     CustomersWithId:
       allOf:
         - $ref: "#/components/schemas/Customers"
-        - type: object
-          properties:
-            id:
-              type: string
-              example: "id1"
+        - $ref: "#/components/schemas/CustomerId"
           required:
             - id
 
