@@ -90,7 +90,7 @@ paths:
                 properties:
                   id:
                     type: string
-                    example: "id1"
+                    example: "cUsT-120d-df8x"
       responses:
         '200':
           description: OK
@@ -117,7 +117,7 @@ components:
     CustomerId:
       type: object
       properties:
-        id:
+        idCustomer:
           type: string
           example: "cUsT-120d-df8x"
     CustomersWithId:

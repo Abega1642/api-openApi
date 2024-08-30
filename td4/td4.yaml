@@ -40,7 +40,7 @@ paths:
             type: string
             example: "cUsT-120d-df8x"
       requestBody:
-        description: The order to create
+        description: The order(s) to be create
         required: true
         content:
           application/json:
@@ -51,6 +51,27 @@ paths:
       responses:
         '201':
           description: The created order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OrdersWithCustomerId"
+    put:
+      tags:
+        - Order
+      summary: update order(s)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Orders"
+      responses:
+        '200':
+          description: OK
           content:
             application/json:
               schema:
@@ -85,6 +106,7 @@ components:
           type: string
           format: date-time
     OrdersWithCustomerId:
+      type: object
       allOf:
         - $ref: "../td1_2/td1.yaml/#/components/schemas/CustomerId"
         - $ref: "#/components/schemas/Orders"
