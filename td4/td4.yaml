@@ -12,12 +12,7 @@ paths:
       summary: Get customer's orders
       operationId: getOrderByCustomerId
       parameters:
-        - in: path
-          required: true
-          name: customerId
-          schema:
-            type: string
-            example: "cUsT-120d-df8x"
+        - $ref: "#/components/parameters/CustomerId"
       responses:
         '200':
           description: Orders of a client with id 'customerId'
@@ -33,12 +28,7 @@ paths:
       summary: Create an order
       operationId: createOrderOfAClient
       parameters:
-        - in: path
-          required: true
-          name: customerId
-          schema:
-            type: string
-            example: "cUsT-120d-df8x"
+        - $ref: "#/components/parameters/CustomerId"
       requestBody:
         description: The order(s) to be create
         required: true
@@ -61,6 +51,9 @@ paths:
       tags:
         - Order
       summary: update order(s)
+      operationId: getOrderByCustomerId
+      parameters:
+        - $ref: "#/components/parameters/CustomerId"
       requestBody:
         required: true
         content:
@@ -81,6 +74,14 @@ paths:
 
 
 components:
+  parameters:
+    CustomerId:
+      in: path
+      name: customerId
+      required: true
+      schema:
+        type: string
+        example: "cUsT-120d-df8x"
   schemas:
     MealWithQuantity:
       type: object

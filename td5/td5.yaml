@@ -1,0 +1,12 @@
+openapi: "3.0.3"
+info:
+  title: API TD5 - STD23028
+  version: "1.0.0"
+servers:
+  - url: https://localhost:8080/std23028
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
