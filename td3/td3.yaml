@@ -112,9 +112,10 @@ components:
         id:
           type: string
           example: "mEaL_i8d0_48df_000"
-          required:
-            - id
+      required:
+        - id
     MealWithId:
+      type: object
       allOf:
         - $ref: "#/components/schemas/MealId"
         - $ref: "#/components/schemas/Meal"

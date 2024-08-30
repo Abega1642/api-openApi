@@ -117,15 +117,15 @@ components:
     CustomerId:
       type: object
       properties:
-        CustomerId:
+        id:
           type: string
           example: "cUsT-120d-df8x"
     CustomersWithId:
+      type: object
       allOf:
-        - $ref: "#/components/schemas/Customers"
         - $ref: "#/components/schemas/CustomerId"
-          required:
-            - id
-
+        - $ref: "#/components/schemas/Customers"
+      required:
+        - id
 
 
