@@ -117,7 +117,7 @@ components:
       properties:
         CustomerId:
           type: string
-          example: "id1"
+          example: "cUsT-120d-df8x"
     CustomersWithId:
       allOf:
         - $ref: "#/components/schemas/Customers"
