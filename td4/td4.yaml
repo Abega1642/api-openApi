@@ -86,5 +86,5 @@ components:
           format: date-time
     OrdersWithCustomerId:
       allOf:
-        - $ref: "../td1/td1.yaml/#/components/schemas/CustomerId"
+        - $ref: "../td1_2/td1.yaml/#/components/schemas/CustomerId"
         - $ref: "#/components/schemas/Orders"
