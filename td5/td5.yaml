@@ -5,8 +5,34 @@ info:
 servers:
   - url: https://localhost:8080/std23028
 paths:
-  /test:
-    get:
+  /customers/:
+    patch:
+      tags:
+        - Customers
+      summary: Partially update a customer
+      operationId: partiallyUpdateCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCustomer:
+                  type: string
+                  example: "cUsT-120d-df8x"
+                name:
+                  type: string
+                  example: Razafindratelo Abegà
+                age:
+                  type: integer
+                  format: int32
+                  example: 19
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "../td1_2/td1.yaml/#/components/schemas/CustomersWithId"
+    
