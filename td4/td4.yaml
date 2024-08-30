@@ -17,45 +17,74 @@ paths:
           name: customerId
           schema:
             type: string
-            example: "cUsT-df12-fde8"
-
+            example: "cUsT-120d-df8x"
       responses:
         '200':
-          description: OK
+          description: Orders of a client with id 'customerId'
           content:
             application/json:
               schema:
                 type: array
                 items:
-                   $ref: "#/components/schemas/OrdersWithCustomerId"
-
-
+                  $ref: "#/components/schemas/OrdersWithCustomerId"
+    post:
+      tags:
+        - Order
+      summary: Create an order
+      operationId: createOrderOfAClient
+      parameters:
+        - in: path
+          required: true
+          name: customerId
+          schema:
+            type: string
+            example: "cUsT-120d-df8x"
+      requestBody:
+        description: The order to create
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Orders"
+      responses:
+        '201':
+          description: The created order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OrdersWithCustomerId"
 
 
 components:
   schemas:
-    Meal:
-      allOf:
-        - $ref: "../td3/td3.yaml/#/components/schemas/Meal"
-    Meals:
-      type: array
-      items:
-        $ref: "#/components/schemas/Meal"
+    MealWithQuantity:
+      type: object
+      properties:
+        meal:
+          $ref: "../td3/td3.yaml/#/components/schemas/Meal"
+        quantity:
+          type: integer
+          format: int64
+          example: 5
     Orders:
       type: object
       properties:
         reference:
           type: string
-          example: "order_ref-125d-dd8f"
+          example: "oRdEr_ref-125d-dd8f"
         meals:
-          $ref: "#/components/schemas/Meals"
+          type: array
+          items:
+            $ref: "#/components/schemas/MealWithQuantity"
+          description: List of meals with quantities ordered
         orderDateTime:
           type: string
           format: date-time
-    CustomerId:
-      type: object
-
     OrdersWithCustomerId:
       allOf:
-        - $ref: "../td1/td1.yaml/"
+        - $ref: "../td1/td1.yaml/#/components/schemas/CustomerId"
         - $ref: "#/components/schemas/Orders"
