@@ -78,6 +78,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/CustomersWithId"
     delete:
+      tags:
+        - Customers
       requestBody:
         content:
           application/json:
