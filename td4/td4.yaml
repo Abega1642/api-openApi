@@ -27,7 +27,7 @@ paths:
               schema:
                 type: array
                 items:
-                   $ref: "#/components/schemas/Meals"
+                   $ref: "#/components/schemas/OrdersWithCustomerId"
 
 
 
@@ -39,10 +39,8 @@ components:
         - $ref: "../td3/td3.yaml/#/components/schemas/Meal"
     Meals:
       type: array
-      properties:
-      allOf:
-        - $ref: "#/components/schemas/Meal"
-      $ref:
+      items:
+        $ref: "#/components/schemas/Meal"
     Orders:
       type: object
       properties:
@@ -53,10 +51,11 @@ components:
           $ref: "#/components/schemas/Meals"
         orderDateTime:
           type: string
+          format: date-time
     CustomerId:
       type: object
 
     OrdersWithCustomerId:
       allOf:
-        - $ref: "#/components/schemas/CustomerId"
+        - $ref: "../td1/td1.yaml/"
         - $ref: "#/components/schemas/Orders"
